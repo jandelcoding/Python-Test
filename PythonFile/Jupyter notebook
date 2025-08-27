@@ -1,0 +1,59 @@
+import pandas as pd
+import numpy as np
+
+# Create a dictionary with sample data
+data = {
+    'Student_ID': range(1, 11),
+    'Math_Score': [85, 92, 78, 88, 65, 95, 75, 80, 70, 99],
+    'Science_Score': [90, 88, 85, 76, 70, 92, 80, 85, 75, 98],
+    'English_Score': [78, 85, 90, 80, 75, 92, 88, 82, 70, 95],
+    'Gender': ['Male', 'Female', 'Male', 'Female', 'Male', 'Female', 'Male', 'Female', 'Male', 'Female']
+}
+
+# Create a DataFrame from the dictionary
+df = pd.DataFrame(data)
+
+# Print the DataFrame to see the data
+print("Original DataFrame:")
+print(df)
+
+Step 2: Calculate Average Scores
+Now that we have our data, let's calculate the average score for each subject and the overall average score for all students.
+
+# Calculate the average score for each subject
+avg_math = df['Math_Score'].mean()
+avg_science = df['Science_Score'].mean()
+avg_english = df['English_Score'].mean()
+
+# Calculate the overall average score for all subjects and students
+df['Average_Score'] = df[['Math_Score', 'Science_Score', 'English_Score']].mean(axis=1)
+overall_avg = df['Average_Score'].mean()
+
+# Print the results
+print(f"\nAverage Math Score: {avg_math:.2f}")
+print(f"Average Science Score: {avg_science:.2f}")
+print(f"Average English Score: {avg_english:.2f}")
+print(f"Overall Average Score: {overall_avg:.2f}")
+
+Step 3: Visualize the Data
+Finally, let's create a bar chart to visualize the average scores for each subject. This is a common practice to gain a quick understanding of the data.
+
+import matplotlib.pyplot as plt
+
+# Create a DataFrame for the averages
+avg_scores_df = pd.DataFrame({
+    'Subject': ['Math', 'Science', 'English'],
+    'Average Score': [avg_math, avg_science, avg_english]
+})
+
+# Create the bar chart
+plt.figure(figsize=(8, 6))
+plt.bar(avg_scores_df['Subject'], avg_scores_df['Average Score'], color=['skyblue', 'salmon', 'lightgreen'])
+plt.title('Average Scores by Subject')
+plt.xlabel('Subject')
+plt.ylabel('Average Score')
+plt.ylim(0, 100) # Set the y-axis limit for better visualization
+plt.grid(axis='y', linestyle='--', alpha=0.7)
+
+# Display the plot
+plt.show()
