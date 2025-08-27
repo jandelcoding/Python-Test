@@ -1,0 +1,39 @@
+def calculate_factorial(n):
+    """
+    Calculates the factorial of a non-negative integer.
+
+    The factorial of a number 'n' is the product of all positive integers less than or equal to 'n'.
+    For example, 5! = 5 * 4 * 3 * 2 * 1 = 120.
+
+    Args:
+        n: A non-negative integer.
+
+    Returns:
+        The factorial of n if n is a non-negative integer.
+        Returns 'Error: Factorial is not defined for negative numbers.'
+        if the input is negative.
+    """
+    # Handle the edge case for negative numbers, as factorials are only defined for non-negative integers.
+    if n < 0:
+        return "Error: Factorial is not defined for negative numbers."
+    # The factorial of 0 is defined as 1.
+    elif n == 0:
+        return 1
+    # For any positive integer, calculate the factorial.
+    else:
+        # Initialize the factorial variable with 1.
+        factorial_result = 1
+        # Use a for loop to multiply numbers from 1 up to n.
+        for i in range(1, n + 1):
+            factorial_result *= i  # This is a shorthand for factorial_result = factorial_result * i
+        return factorial_result
+
+# Example usage of the function:
+number1 = 5
+print(f"The factorial of {number1} is {calculate_factorial(number1)}")
+
+number2 = 0
+print(f"The factorial of {number2} is {calculate_factorial(number2)}")
+
+number3 = -3
+print(f"The factorial of {number3} is {calculate_factorial(number3)}")
